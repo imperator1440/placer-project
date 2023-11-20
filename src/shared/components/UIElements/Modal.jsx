@@ -11,7 +11,7 @@ const ModalOverlay = props => {
       <header className={`modal__header ${props.headerClass}`}>
         <h2>{props.header}</h2>
       </header>
-      <form onSubmit={props.onSubmit ? props.onSubmit : (event) => event.preventDefault}>
+      <form onSubmit={props.onSubmit ? props.onSubmit : (event) => event.preventDefault()}>
         <div className={`modal__content ${props.contentClass}`}>
           {props.children}
         </div>

@@ -5,26 +5,28 @@ import Users from "./users/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import UserPlaces from "./places/pages/UserPlaces";
+import UpdatePlace from "./places/pages/UpdatePlace";
 
 const App = () => {
   return (
     <Router> 
       <MainNavigation />
       <main>
-        <YMaps query={{ apikey: '36ac4800-fc10-4589-8ef3-27df656cf1c0' }}>
-          <Switch>
-            <Route path="/" exact>
-              <Users />
-            </Route>
-            <Route path="/:userId/places" exact>
-              <UserPlaces />
-            </Route>
-            <Route path="/places/new" exact>
-              <NewPlace />
-            </Route>
-            <Redirect to="/" />
-          </Switch>
-        </YMaps>
+        <Switch>
+          <Route path="/" exact>
+            <Users />
+          </Route>
+          <Route path="/:userId/places" exact>
+            <UserPlaces />
+          </Route>
+          <Route path="/places/new" exact>
+            <NewPlace />
+          </Route>
+          <Route path="/places/:placeId">
+           <UpdatePlace />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
       </main>
     </Router>
   );

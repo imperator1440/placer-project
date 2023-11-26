@@ -1,6 +1,6 @@
 import Card from '../../../shared/components/UIElements/Card';
 import PlaceItem from '../PlaceItem/PlaceItem';
-import Button from "../../shared/components/FormElements/Button";
+import Button from '../../../shared/components/FormElements/Button';
 
 import './PlaceList.css';
 

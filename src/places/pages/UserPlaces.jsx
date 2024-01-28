@@ -19,6 +19,7 @@ const UserPlaces = () => {
         setLoadedPlaces(responseData.places);
       } catch (err) {}
     };
+    fetchPlaces();
   }, [sendRequest, userId]);
 
   return (

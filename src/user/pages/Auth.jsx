@@ -6,6 +6,7 @@ import Card from '../../shared/components/UIElements/Card';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import ImageUpload from '../../shared/components/FormElements/imageUpload';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
 import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/util/validators';
@@ -34,7 +35,8 @@ const Auth = () => {
       setFormData(
         {
           ...formState.inputs,
-          name: undefined
+          name: undefined,
+          image: undefined
         },
         formState.inputs.email.isValid && formState.inputs.password.isValid
       );
@@ -45,6 +47,10 @@ const Auth = () => {
           value: '',
           isValid: false
         },
+        image: {
+          value: null,
+          isValid: false
+        }
       }, false);
     }
     setIsLogingMode(prevMode => !prevMode);
@@ -105,6 +111,7 @@ const Auth = () => {
               onInput={inputHandler}
             />
           )}
+          {!isLoginMode && <ImageUpload center id="image" onInput={inputHandler} />}
           <Input
 		  	  	id='email'
             element='input'

@@ -6,16 +6,16 @@ import PlaceList from '../components/PlaceList/PlaceList';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
-const UserPlaces = () => { 
+const UserPlaces = () => {
   const [loadedPlaces, setLoadedPlaces] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const userId = useParams().userId;
 
   useEffect(() => {
-    const fetchPlaces = async () => { 
+    const fetchPlaces = async () => {
       try {
-        const responseData = await sendRequest(`http://localhost:5000/api/places/user/${userId}`,);
+        const responseData = await sendRequest(`${proce.env.REACT_APP_BACKEND_URL}/places/user/${userId}`);
         setLoadedPlaces(responseData.places);
       } catch (err) {}
     };
@@ -23,9 +23,7 @@ const UserPlaces = () => {
   }, [sendRequest, userId]);
 
   const placeDeletedHandler = (deletedPlaceId) => {
-    setLoadedPlaces(prevPlaces =>
-      prevPlaces.filter(place => place.id !== deletedPlaceId)
-    );
+    setLoadedPlaces((prevPlaces) => prevPlaces.filter((place) => place.id !== deletedPlaceId));
   };
 
   return (

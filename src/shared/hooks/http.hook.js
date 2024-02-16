@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useEffect } from 'react';
 
 export const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,14 +16,12 @@ export const useHttpClient = () => {
         method,
         body,
         headers,
-        signal: httpAbortController.signal
+        signal: httpAbortController.signal,
       });
-  
+
       const responseData = await response.json();
-  
-      activeHttpRequests.current = activeHttpRequests.current.filter(
-        reqCtrl => reqCtrl !== httpAbortController
-      );
+
+      activeHttpRequests.current = activeHttpRequests.current.filter((reqCtrl) => reqCtrl !== httpAbortController);
 
       if (!response.ok) {
         throw new Error(responseData.message);
@@ -34,7 +32,7 @@ export const useHttpClient = () => {
     } catch (err) {
       setError(err.message);
       setIsLoading(false);
-      throw err;  
+      throw err;
     }
   }, []);
 
@@ -44,7 +42,7 @@ export const useHttpClient = () => {
 
   useEffect(() => {
     return () => {
-      activeHttpRequests.current.forEach(abortCtrl => abortCtrl.abort());
+      activeHttpRequests.current.forEach((abortCtrl) => abortCtrl.abort());
     };
   }, []);
 

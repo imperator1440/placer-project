@@ -1,4 +1,4 @@
-import {useState, useCallback, useEffect} from 'react'
+import { useState, useCallback, useEffect } from 'react';
 
 let logoutTimer;
 
@@ -17,7 +17,7 @@ export const useAuth = () => {
       JSON.stringify({
         userId: uid,
         token: token,
-        expirationDate: tokenExpirationDate.toISOString
+        expirationDate: tokenExpirationDate.toISOString,
       })
     );
   }, []);
@@ -42,7 +42,7 @@ export const useAuth = () => {
     if (storedData && storedData.token && new Date(storedData.expiration) > new Date()) {
       login(storedData.userId, storedData.token, new Date(storedData.expiration));
     }
-  }, [login])
+  }, [login]);
 
   return { token, login, logout, userId };
-}
+};
